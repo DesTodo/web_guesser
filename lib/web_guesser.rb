@@ -4,7 +4,7 @@ require './lib/generator'
 
 number = Generator.new.random
 get '/' do
-  "The secret number is #{number}"
+  erb :index, :locals => {:number => number}
 end
 
 # count = 0
