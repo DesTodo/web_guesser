@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title> Web Guesser</title>
-    <link rel="stylesheet" href="lib/views/main.css">
+    <style>
+      body {
+          background: <%= color %> ;
+         }
+    </style>
   </head>
   <body>
     <form>
@@ -11,10 +15,10 @@
       <input type='submit' value='Guess!' />
     </form>
     <p>
-     Your guess is <%= guess %>
+      Your guess is <%= guess %>
     </p>
     <p>
-    <%= message %>
+      <%= message %>
     </p>
   </body>
 </html>
