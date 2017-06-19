@@ -1,13 +1,18 @@
-require './lib/web_guesser'
+#require './lib/web_guesser'
 
 class Generator
-  attr_reader :number
+  attr_reader :number, :message
 
   def random
     @number = rand(101)
   end
 
-  #Hello, World, it says "The secret number is #{number}" where X is the secret number
-  # Make sure that when you refresh the web page you see the same number each time
+  def guess
+    guess = params["guess"].to_i
+  end
+
+  def message
+    @message = p "Too high"
+  end
 
 end

@@ -1,8 +1,20 @@
+<!DOCTYPE html>
 <html>
-  <head></head>
+  <head>
+    <meta charset="utf-8">
+    <title> Web Guesser</title>
+    <link rel="stylesheet" href="lib/views/main.css">
+  </head>
   <body>
+    <form>
+      <input type='text' name='guess' />
+      <input type='submit' value='Guess!' />
+    </form>
     <p>
-      The SECRET NUMBER is <%= number %>
+     Your guess is <%= guess %>
+    </p>
+    <p>
+    <%= message %>
     </p>
   </body>
 </html>
