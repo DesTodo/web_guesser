@@ -2,15 +2,19 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 S_NUMBER = rand(101)
+@@count = 5
 
 get '/' do
+  S_NUMBER = rand(101) if @@count == 0
   guess = params["guess"].to_i
   message = check_guess(guess)
   color = color_check(message)
-  erb :index, :locals => {:guess => guess, :message => message, :color => color}
+  result = result(message)
+  erb :index, :locals => {:guess => guess, :message => message, :color => color, :result => result}
 end
 
 def check_guess(guess)
+  @@count -= 1
   if guess - S_NUMBER < -5 && guess < S_NUMBER
     p "Way too low!!"
   elsif guess < S_NUMBER
@@ -24,6 +28,18 @@ def check_guess(guess)
   end
 end
 
+def result(message)
+  if message.include?("Correct") == false && @@count == 0
+    @@count = 5
+    p "You’ve lost and a new number has been generated! The secret number is #{S_NUMBER}"
+  elsif message.include?("Correct")
+    @@count = 0
+    p "You win. A new number has been generated."
+  else
+    false
+  end
+end
+
 def color_check(message)
   if message.include?("Way")
     color = 'pink'
@@ -33,7 +49,3 @@ def color_check(message)
     color = 'green'
   end
 end
-
-# Translated to English, this means "render the ERB template named index and
-# create a local variable for the template named number which has the same
-# value as the number variable from this server code."
