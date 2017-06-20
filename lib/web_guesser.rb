@@ -6,6 +6,7 @@ S_NUMBER = rand(101)
 
 get '/' do
   S_NUMBER = rand(101) if @@count == 0
+  @@count = 5 if @@count == 0
   guess = params["guess"].to_i
   message = check_guess(guess)
   color = color_check(message)
@@ -29,8 +30,7 @@ def check_guess(guess)
 end
 
 def result(message)
-  if message.include?("Correct") == false && @@count == 0
-    @@count = 5
+  if @@count == 0 && message.include?("Correct") == false
     p "You’ve lost and a new number has been generated! The secret number is #{S_NUMBER}"
   elsif message.include?("Correct")
     @@count = 0
